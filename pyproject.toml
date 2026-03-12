@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "snapdantic"
+version = "0.1.0"
+description = "Transparent persistent Pydantic models backed by SQLite + Zarr"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "WangXinyan940" },
+]
+keywords = ["pydantic", "numpy", "zarr", "sqlite", "persistence", "snapshot"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    "pydantic>=2.0",
+    "pydantic-numpy>=5.0",
+    "numpy>=1.24",
+    "filelock>=3.12",
+    "zarr>=2.0,<3.0",
+    "numcodecs>=0.11",
+]
+
+[project.optional-dependencies]
+yaml = ["pyyaml>=6.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pyyaml>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/WangXinyan940/snapdantic"
+Repository = "https://github.com/WangXinyan940/snapdantic"
+
+[tool.hatch.build.targets.wheel]
+packages = ["snapdantic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["snapdantic"]
+omit = ["tests/*"]
